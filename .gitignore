@@ -12,3 +12,6 @@ build/
 dist/
 sofi.egg-info/
 .idea
+.venvs
+.pytest_cache/
+test_reports

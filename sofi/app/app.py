@@ -50,6 +50,7 @@ class Sofi():
 
             # Make a background thread that sets up the loop
             self.thread = Thread(target=self.__run_loop)
+            self.thread.setDaemon(True)
 
         else:
             # Get the current asyncio event loop

@@ -1,6 +1,9 @@
+from pip._vendor import pytoml
 from setuptools import setup, find_packages
 from os import path
 
+with open('Pipfile', 'r') as _pipfile:
+    _PIPFILE_CONTENTS = pytoml.load(_pipfile)
 
 # Get the long description from the README file
 with open(path.join('.', 'README.md'), encoding='utf-8') as f:
@@ -26,11 +29,6 @@ setup(
         'test': ['test.png']
     },
 
-    install_requires=['websockets'],
-    python_requires='>=3.6',
-    setup_requires=['pytest-runner'],
-    tests_require=['pytest', 'hypothesis'],
-
     license="MIT",
     classifiers=['License :: OSI Approved :: MIT License',
                  'Framework :: AsyncIO',
@@ -53,4 +51,5 @@ setup(
         'Source': 'https://github.com/tryexceptpass/sofi',
         'Documentation': 'http://sofi-gui-framework.readthedocs.io/en/latest/',
     },
+    install_requires=list(_PIPFILE_CONTENTS['packages'].keys())
 )
